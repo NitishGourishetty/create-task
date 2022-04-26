@@ -1,16 +1,8 @@
 let totalCircles = 3;
-
 let circles = document.querySelectorAll(".circle");
-
 let circleColors = [];
-
-let pickedColor; //odd color out
-
+let pickedColor;
 let resetButton = document.getElementById("reset");
-
-var flag = false;
-
-game();
 
 
 function game() {
@@ -29,9 +21,7 @@ function handle() {
                totalCircles++;
                game();
             } else {
-                //this.style.background = "black";
                 totalCircles = 3;
-                //alert("Unfortunately you lost, here are your color blind stats")
                 console.log("L");
                 game();
             }
@@ -42,9 +32,7 @@ function handle() {
 function setUpCircles() {
 	for (let i = 0; i<circles.length; i++) {
 		console.log("picked color" + pickedColor)
-		circles[i].addEventListener("click", handle
-            //grab color of clicked squares (use this because it refers to what was clicked)
-            );
+		circles[i].addEventListener("click", handle);
 	}
 }
 
@@ -113,3 +101,5 @@ function generateCircleRGBS(numCircles) {
 
 	return arr; 
 }
+
+game();
