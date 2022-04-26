@@ -70,6 +70,12 @@ body {
 
 }
 
+p {
+	font-family: 'Pacifico', cursive;
+    text-transform: uppercase;
+	animation: pulsate 0.3s ease-in-out infinite alternate; 
+}
+
 button {
     border: none;
     background: none;
