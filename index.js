@@ -116,6 +116,6 @@ function generateCircleRGBS(numCircles) {
 	return arr; 
 }
 
-alert("You can click the circle that is a different color than the other circles. If you get it wrong, the program is keeping track of how many of each main color you get wrong!")
+alert("You can click the circle that is a different color than the other circles. If you get it wrong, the program is keeping track of how many of each main color you get wrong!, So just click the odd circle out to see how well you can see colors! If you click the right color a new circle will appear, but if you get it wrong it will reset back to 3 circles")
 
 game();
