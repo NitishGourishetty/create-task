@@ -63,11 +63,6 @@ function reset() {
     }
 }
 
-resetButton.addEventListener("click", function () {
-    reset();
-});
-
-
 
 function RGB() {
 	let red = Math.floor(Math.random() * 256);
@@ -78,9 +73,9 @@ function RGB() {
 }
 
 function generateOffset(RGBValue) {
-	let topOffset = (256 - RGBValue) / totalCircles //logic
+	let topOffset = (256 - RGBValue) / (totalCircles * 0.25) //logic
 
-	let bottomOffset = RGBValue / totalCircles;
+	let bottomOffset = RGBValue / (totalCircles * 0.25);
 
 	if(Math.floor(Math.random() * 2)) {
 		return Math.floor(Math.random() * topOffset);

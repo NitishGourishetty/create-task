@@ -43,21 +43,25 @@ body {
 }
 
 
+
+#circle-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .circle {
-    width: 30%;
     float: left;
     padding-bottom: 10%;
-    border-radius: 15%;
-    margin: 1.66%;
-     width: 0; 
-    height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-  
-    border-bottom: 10px solid black;
-    transition: background .5s;
-     -webkit-transition: background 0.5s;
-    -moz-transition: background 0.5s;
+   
+    margin: 1%;
+    height: 10%;
+  	width: 10%;
+  	border-radius: 50%;
+  	display: block;
+
 }
 
 button {
