@@ -17,7 +17,6 @@ function game() {
 function handle() {
 	let clickedColor = this.style.backgroundColor;
             console.log("clicked color " + clickedColor)
-            //compare color to picked color
             
             if (clickedColor === pickedColor) {
                console.log("W");
@@ -43,7 +42,8 @@ function setUpCircles() {
 
 
 function reset() {
-	circleColors = generateCircleRGBS(totalCircles);
+	//circleColors = generateCircleRGBS(totalCircles);
+	generateCircleRGBS(totalCircles);
 	console.log(circleColors);
 
 	for (let i = 0; i<circles.length; i++) { 
@@ -66,8 +66,8 @@ function RGB() {
 }
 
 function generateOffset(RGBValue) {
-	let topOffset = (256 - RGBValue) / (totalCircles * 0.25) 
-	let bottomOffset = RGBValue / (totalCircles * 0.25);
+	let topOffset = (256 - RGBValue) / (totalCircles * 0.35) 
+	let bottomOffset = RGBValue / (totalCircles * 0.35);
 
 	if(Math.floor(Math.random() * 2)) {
 		return Math.floor(Math.random() * topOffset);
@@ -96,24 +96,21 @@ function generateCircleRGBS(numCircles) {
 	blueOffset = RGBArray[2] +  generateOffset(RGBArray[2]);
 
 	let otherColor = "rgb(" + redOffset + ", " + greenOffset + ", " + blueOffset + ")"
-
-	//let otherColorPlacement = Math.floor(Math.random() * numCircles) - 1;
-
-	//let otherColorPlacement = Math.floor(Math.random() * numCircles);
 	let otherColorPlacement = Math.floor(Math.random() * (numCircles - 1));
 	console.log("other color placement" + otherColorPlacement)
-	let arr = [];
+	//let arr = [];
+	circleColors=[];
 
 	for (let i = 0; i<numCircles; i++) {
 		if(i == otherColorPlacement) {
-			arr.push(pickedColor);
+			circleColors.push(pickedColor);
 		} else {
-			arr.push(otherColor);
+			circleColors.push(otherColor);
 		}
 		
 	}
 
-	return arr; 
+	//return arr; 
 }
 
 alert("You can click the circle that is a different color than the other circles. If you get it wrong, the program is keeping track of how many of each main color you get wrong!, So just click the odd circle out to see how well you can see colors! If you click the right color a new circle will appear, but if you get it wrong it will reset back to 3 circles")
