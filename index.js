@@ -6,6 +6,7 @@ let circleColors = [];
 let pickedColor;
 let resetButton = document.getElementById("reset");
 let messageDisplay = document.querySelector("#message");
+let RGBArray = [];
 
 
 function game() {
@@ -24,6 +25,7 @@ function handle() {
                game();
             } else {
                 totalCircles = 3;
+                currDomColor = findDominantColor(RGBArray);
                 dominantColor[currDomColor]++;
                 messageDisplay.textContent = "Dominant Color Wrong: Red-" + dominantColor[0] + " Green-" + dominantColor[1] +  " Blue-" + dominantColor[2];
                 console.log("L");
@@ -71,7 +73,7 @@ function generateOffsetArray(RGBArray) {
 		let topOffset = (256 - RGBArray[i]) / (totalCircles * 0.35) 
 		let bottomOffset = RGBArray[i] / (totalCircles * 0.35);
 
-		if(Math.floor(Math.random() * 2)) {
+		if(Math.floor(Math.random() * 2) >= 1) {
 			offsetArray.push(Math.floor(Math.random() * topOffset));
 			} else {
 			offsetArray.push(-Math.floor(Math.random() * bottomOffset));
@@ -80,27 +82,28 @@ function generateOffsetArray(RGBArray) {
 	return offsetArray;
 }
 
+function findDominantColor(RGBArray) {
+	let currentdominantColor = RGBArray[0];
+	let maxColor = 0; //0 is red, 1 is green, 2 is blue
+	for(let i = 0; i<RGBArray.length; i++) {
+		if(RGBArray[i] >= currentdominantColor) {
+			maxColor = i;
+			currentdominantColor = RGBArray[i];
+		}
+	}
+	return maxColor;
+}
+
 function generateCircleRGBS(numCircles) {
 	
-	let RGBArray = RGB();
+	RGBArray = RGB();
 	pickedColor = "rgb(" + RGBArray[0] + ", " + RGBArray[1] + ", " + RGBArray[2] + ")"
-
-	currDomColor = Math.max(...RGBArray);
-
-	if(currDomColor == RGBArray[0]) {
-		currDomColor = 0;
-	} else if(currDomColor == RGBArray[1]) {
-		currDomColor = 1;
-	} else {
-		currDomColor = 2;
-	}
-
 	let offsetArray = generateOffsetArray(RGBArray);
 	redOffset = RGBArray[0] +  offsetArray[0];
 	greenOffset = RGBArray[1] + offsetArray[1];
 	blueOffset = RGBArray[2] +  offsetArray[2];
-
 	let otherColor = "rgb(" + redOffset + ", " + greenOffset + ", " + blueOffset + ")"
+	
 	let otherColorPlacement = Math.floor(Math.random() * (numCircles - 1));
 	console.log("other color placement" + otherColorPlacement)
 	circleColors=[];
