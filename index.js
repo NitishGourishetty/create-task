@@ -42,7 +42,6 @@ function setUpCircles() {
 
 
 function reset() {
-	//circleColors = generateCircleRGBS(totalCircles);
 	generateCircleRGBS(totalCircles);
 	console.log(circleColors);
 
@@ -65,15 +64,20 @@ function RGB() {
 	return [red, green, blue];
 }
 
-function generateOffset(RGBValue) {
-	let topOffset = (256 - RGBValue) / (totalCircles * 0.35) 
-	let bottomOffset = RGBValue / (totalCircles * 0.35);
+function generateOffsetArray(RGBArray) {
+	let offsetArray = []
 
-	if(Math.floor(Math.random() * 2)) {
-		return Math.floor(Math.random() * topOffset);
-	} else {
-		return -Math.floor(Math.random() * bottomOffset);
+	for(let i = 0; i<RGBArray.length; i++) {
+		let topOffset = (256 - RGBArray[i]) / (totalCircles * 0.35) 
+		let bottomOffset = RGBArray[i] / (totalCircles * 0.35);
+
+		if(Math.floor(Math.random() * 2)) {
+			offsetArray.push(Math.floor(Math.random() * topOffset));
+			} else {
+			offsetArray.push(-Math.floor(Math.random() * bottomOffset));
+		}
 	}
+	return offsetArray;
 }
 
 function generateCircleRGBS(numCircles) {
@@ -91,14 +95,14 @@ function generateCircleRGBS(numCircles) {
 		currDomColor = 2;
 	}
 
-	redOffset = RGBArray[0] +  generateOffset(RGBArray[0]);
-	greenOffset = RGBArray[1] + generateOffset(RGBArray[1]);
-	blueOffset = RGBArray[2] +  generateOffset(RGBArray[2]);
+	let offsetArray = generateOffsetArray(RGBArray);
+	redOffset = RGBArray[0] +  offsetArray[0];
+	greenOffset = RGBArray[1] + offsetArray[1];
+	blueOffset = RGBArray[2] +  offsetArray[2];
 
 	let otherColor = "rgb(" + redOffset + ", " + greenOffset + ", " + blueOffset + ")"
 	let otherColorPlacement = Math.floor(Math.random() * (numCircles - 1));
 	console.log("other color placement" + otherColorPlacement)
-	//let arr = [];
 	circleColors=[];
 
 	for (let i = 0; i<numCircles; i++) {
@@ -107,7 +111,6 @@ function generateCircleRGBS(numCircles) {
 		} else {
 			circleColors.push(otherColor);
 		}
-		
 	}
 
 	//return arr; 
